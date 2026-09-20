@@ -55,7 +55,11 @@
       <!-- 地点（旅行照片用） -->
       <div class="field">
         <label class="label" for="place">地点名（旅行照片填）</label>
-        <input type="text" id="place" class="input" placeholder="例如：法国 · 马赛" />
+        <div class="place-row">
+          <input type="text" id="place" class="input" placeholder="例如：法国 · 马赛" />
+          <button type="button" id="locate-btn" class="locate-btn">🔍 自动定位</button>
+        </div>
+        <p class="place-hint">填地点名后点「自动定位」会自动算出经纬度，旅行照片即可显示在地图上</p>
       </div>
       <div class="field-row">
         <div class="field">

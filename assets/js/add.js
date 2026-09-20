@@ -12,6 +12,7 @@ const els = {
   category: document.getElementById('category'),
   title: document.getElementById('title'),
   place: document.getElementById('place'),
+  locateBtn: document.getElementById('locate-btn'),
   lat: document.getElementById('lat'),
   lng: document.getElementById('lng'),
   memo: document.getElementById('memo'),
@@ -61,6 +62,44 @@ function compressImage(file, maxDim = 1600, quality = 0.82) {
   });
 }
 
+/**
+ * 地点名 → 经纬度（Nominatim 免费地理编码，无需 Key）。
+ * 返回 { lat, lng }；找不到或网络失败时抛出错误。
+ */
+async function geocodePlace(name) {
+  const url = 'https://nominatim.openstreetmap.org/search'
+    + '?format=json&limit=1&q=' + encodeURIComponent(name);
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error('定位服务不可用（HTTP ' + res.status + '）');
+  const data = await res.json();
+  if (!Array.isArray(data) || !data.length) {
+    throw new Error('没找到这个地点，换个写法或手动填经纬度');
+  }
+  return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+}
+
+/** 点击「自动定位」：把地点名转成经纬度填入输入框 */
+async function onLocate() {
+  const name = els.place.value.trim();
+  if (!name) {
+    setMsg('请先填写地点名，再点自动定位', 'err');
+    return;
+  }
+  els.locateBtn.disabled = true;
+  els.locateBtn.textContent = '定位中…';
+  try {
+    const { lat, lng } = await geocodePlace(name);
+    els.lat.value = lat.toFixed(5);
+    els.lng.value = lng.toFixed(5);
+    setMsg('✅ 已定位：' + lat.toFixed(5) + ', ' + lng.toFixed(5), 'ok');
+  } catch (e) {
+    setMsg('定位失败：' + (e.message || e), 'err');
+  } finally {
+    els.locateBtn.disabled = false;
+    els.locateBtn.textContent = '🔍 自动定位';
+  }
+}
+
 /** 选择图片：预览 + 压缩 */
 async function handleFile(file) {
   if (!file || !file.type.startsWith('image/')) {
@@ -83,15 +122,30 @@ async function onSubmit(e) {
     return;
   }
 
-  const lat = parseFloat(els.lat.value);
-  const lng = parseFloat(els.lng.value);
-  const hasLocation = !isNaN(lat) && !isNaN(lng);
+  let lat = parseFloat(els.lat.value);
+  let lng = parseFloat(els.lng.value);
+  let hasLocation = !isNaN(lat) && !isNaN(lng);
+
+  // 旅行照片：填了地点名但没填经纬度时，自动地理编码（填个地点名就能上地图）
+  const placeName = els.place.value.trim();
+  if (!hasLocation && placeName) {
+    try {
+      const geo = await geocodePlace(placeName);
+      lat = geo.lat;
+      lng = geo.lng;
+      hasLocation = true;
+      els.lat.value = lat.toFixed(5);
+      els.lng.value = lng.toFixed(5);
+    } catch (e) {
+      console.warn('自动定位失败（照片仍会保存，只是不上地图）：', e.message || e);
+    }
+  }
 
   const meta = {
     category: els.category.value,
     title: els.title.value.trim(),
     memo: els.memo.value.trim(),
-    location: hasLocation ? { name: els.place.value.trim(), lat: lat, lng: lng } : null,
+    location: hasLocation ? { name: placeName, lat: lat, lng: lng } : null,
     date: els.date.value
   };
 
@@ -137,6 +191,7 @@ els.dropZone.addEventListener('drop', e => {
   if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
 });
 els.form.addEventListener('submit', onSubmit);
+els.locateBtn.addEventListener('click', onLocate);
 
 // 登录校验 + 初始化
 (async function main() {

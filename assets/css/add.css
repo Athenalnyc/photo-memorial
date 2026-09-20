@@ -41,6 +41,26 @@
 }
 .textarea { resize: vertical; }
 
+/* ---- 地点定位 ---- */
+.place-row { display: flex; gap: 10px; }
+.place-row .input { flex: 1; }
+.locate-btn {
+  flex: none;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 0 16px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--accent);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.locate-btn:hover { background: var(--accent); color: #fff; }
+.locate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.place-hint { font-size: 12px; color: var(--text-dim); margin: 0; }
+
 /* ---- 图片上传区 ---- */
 .drop-zone {
   position: relative;
