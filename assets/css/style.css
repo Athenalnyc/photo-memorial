@@ -201,3 +201,20 @@ img { display: block; max-width: 100%; }
   transition: background 0.2s;
 }
 .lightbox__close:hover { background: rgba(255, 255, 255, 0.24); }
+
+/* 删除按钮（灯箱右下角） */
+.lightbox__delete {
+  position: absolute;
+  bottom: 26px;
+  right: 26px;
+  padding: 9px 20px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(206, 96, 82, 0.92);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lightbox__delete:hover { background: #C24E3D; }
+.lightbox__delete:disabled { opacity: 0.6; cursor: default; }

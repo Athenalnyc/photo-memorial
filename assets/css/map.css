@@ -43,6 +43,18 @@
   line-height: 1.6;
   margin: 0;
 }
+.map-popup__delete {
+  margin-top: 10px;
+  width: 100%;
+  padding: 7px 0;
+  border: none;
+  border-radius: 6px;
+  background: rgba(206, 96, 82, 0.92);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.map-popup__delete:hover { background: #C24E3D; }
 
 /* 覆盖 Leaflet 默认 popup 圆角，统一风格 */
 .leaflet-popup-content-wrapper {

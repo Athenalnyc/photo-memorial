@@ -132,6 +132,39 @@ async function uploadPhoto(file, meta) {
   if (dbError) throw dbError;
 }
 
+/**
+ * 删除一张照片：先删数据库记录（RLS 保证只能删自己的），再删存储里的图片。
+ * @param {string} id 照片 id
+ * @param {string} fileUrl 图片公开 URL（用于反推存储路径）
+ */
+async function deletePhoto(id, fileUrl) {
+  const user = await currentUser();
+  if (!user) throw new Error('未登录');
+
+  // 1. 删除数据库记录
+  const { error: dbError } = await supabase.from('photos').delete().eq('id', id);
+  if (dbError) throw dbError;
+
+  // 2. 删除存储里的图片（失败不阻断，只告警）
+  const path = storagePathFromUrl(fileUrl);
+  if (path) {
+    try {
+      await supabase.storage.from('photos').remove([path]);
+    } catch (e) {
+      console.warn('删除存储图片失败（可忽略）：', e);
+    }
+  }
+}
+
+/** 从公开 URL 反推存储对象路径，如 .../public/photos/{user_id}/{ts}.jpg → {user_id}/{ts}.jpg */
+function storagePathFromUrl(url) {
+  if (!url) return null;
+  const marker = '/object/public/photos/';
+  const i = url.indexOf(marker);
+  if (i === -1) return null;
+  return decodeURIComponent(url.slice(i + marker.length));
+}
+
 /* ---- 工具函数（原 data.js 中的） ---- */
 
 /** 按分类 id 获取照片 */

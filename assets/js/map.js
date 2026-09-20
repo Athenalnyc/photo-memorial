@@ -55,6 +55,7 @@ function addMarkers(data) {
           <div class="map-popup__title">${photo.title || ''}</div>
           <div class="map-popup__place">📍 ${photo.location.name || ''}</div>
           <p class="map-popup__memo">${photo.memo || ''}</p>
+          <button class="map-popup__delete" onclick="removeMapPhoto('${photo.id}', '${photo.file}')">删除这张照片</button>
         </div>
       </div>
     `;
@@ -64,6 +65,17 @@ function addMarkers(data) {
       .bindPopup(popupHTML, { maxWidth: 260 });
   });
 }
+
+/** 地图弹窗里的删除：二次确认 → 删除 → 刷新 */
+window.removeMapPhoto = async function (id, fileUrl) {
+  if (!confirm('确定要删除这张照片吗？删除后不可恢复。')) return;
+  try {
+    await deletePhoto(id, fileUrl);
+    window.location.reload();
+  } catch (e) {
+    alert('删除失败：' + (e.message || e));
+  }
+};
 
 // 页面初始化
 (async function main() {
