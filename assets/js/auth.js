@@ -23,9 +23,9 @@ const CATEGORIES = [
 /** 获取当前登录用户，未登录返回 null */
 async function currentUser() {
   try {
-    // 用 getUser 向服务器校验会话：未登录/会话失效/网络异常都返回 null（会跳登录页）
-    const { data } = await supabase.auth.getUser();
-    return data.user || null;
+    // 读本地会话（getSession 只读 localStorage，不发网络请求，绝不会卡住/挂起）
+    const { data } = await supabase.auth.getSession();
+    return (data && data.session && data.session.user) || null;
   } catch (e) {
     console.error('读取登录状态失败：', e);
     return null;
