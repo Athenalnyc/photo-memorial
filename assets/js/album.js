@@ -73,6 +73,9 @@ function renderPhotos(data) {
 
 // 页面初始化
 (async function main() {
+  const user = await requireAuth();
+  if (!user) return;
+  await migrateIfNeeded();
   const data = await loadPhotos();
   renderTabs(data);
   renderPhotos(data);

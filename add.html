@@ -17,7 +17,11 @@
   <header class="topbar">
     <div class="container topbar__inner">
       <a href="index.html" class="topbar__brand">时光相册</a>
-      <a href="index.html" class="topbar__back">← 返回首页</a>
+      <div class="topbar__right">
+        <span id="user-email" class="topbar__email"></span>
+        <a href="index.html" class="topbar__back">← 返回首页</a>
+        <a href="#" id="logout-btn" class="topbar__logout">退出</a>
+      </div>
     </div>
   </header>
 
@@ -85,8 +89,10 @@
     </form>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
   <script src="data/photos.js"></script>
-  <script src="assets/js/data.js"></script>
+  <script src="assets/js/auth.js"></script>
   <script src="assets/js/add.js"></script>
 </body>
 </html>

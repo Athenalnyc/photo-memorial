@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>登录 · 时光相册</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { cream: '#F7F3EC', ink: '#3E3A34', oat: '#B89B7A' } } } };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/login.css" />
+</head>
+<body>
+
+  <main class="login-wrap">
+    <div class="login-card">
+      <h1 class="login-title">时光相册</h1>
+      <p class="login-sub">登录后，查看并上传属于你的照片</p>
+
+      <form id="auth-form" class="login-form">
+        <div class="field">
+          <label class="label" for="email">邮箱</label>
+          <input type="email" id="email" class="input" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label class="label" for="password">密码</label>
+          <input type="password" id="password" class="input" placeholder="至少 6 位" autocomplete="current-password" />
+        </div>
+
+        <button type="submit" id="submit-btn" class="submit-btn">登 录</button>
+        <p id="form-msg" class="form-msg"></p>
+      </form>
+
+      <p class="switch-mode">
+        <span id="switch-text">还没有账号？</span>
+        <a href="#" id="switch-link">去注册</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Supabase SDK + 配置 + 认证 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="data/photos.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

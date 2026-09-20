@@ -1,0 +1,91 @@
+/* ==========================================================================
+   login.css —— 登录 / 注册页样式
+   ========================================================================== */
+
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.login-title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+.login-sub {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.login-form {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { font-size: 14px; color: var(--text); font-weight: 500; }
+
+.input {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #FCFAF6;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(184, 155, 122, 0.15);
+}
+
+.submit-btn {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: 3px;
+  transition: background 0.2s;
+}
+.submit-btn:hover { background: #A68A6B; }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-msg {
+  font-size: 14px;
+  min-height: 18px;
+  text-align: center;
+}
+.form-msg.err { color: #C77; }
+.form-msg.ok { color: #6B9B6B; }
+
+.switch-mode {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.switch-mode a { color: var(--accent); text-decoration: none; }
+.switch-mode a:hover { text-decoration: underline; }

@@ -67,6 +67,9 @@ function addMarkers(data) {
 
 // 页面初始化
 (async function main() {
+  const user = await requireAuth();
+  if (!user) return;
+  await migrateIfNeeded();
   initMap();
   const data = await loadPhotos();
   addMarkers(data);

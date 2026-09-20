@@ -93,6 +93,25 @@ img { display: block; max-width: 100%; }
   transition: background 0.2s;
 }
 .topbar__add:hover { background: #A68A6B; }
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topbar__email {
+  font-size: 13px;
+  color: var(--text-dim);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.topbar__logout {
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.topbar__logout:hover { color: var(--accent); }
 
 /* ---- 页脚 ---- */
 .footer {

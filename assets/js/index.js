@@ -26,6 +26,9 @@ async function renderHome(data) {
 }
 
 (async function main() {
+  const user = await requireAuth();
+  if (!user) return;
+  await migrateIfNeeded();
   const data = await loadPhotos();
   renderHome(data);
 })();
