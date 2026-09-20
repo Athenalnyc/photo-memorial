@@ -1,0 +1,82 @@
+/* ==========================================================================
+   album.css —— 相册页样式（含瀑布流布局）
+   ========================================================================== */
+
+/* ---- 分类 tab 导航 ---- */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab {
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--text-dim);
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.tab:hover { color: var(--text); background: var(--accent-soft); }
+.tab.active {
+  color: #fff;
+  background: var(--accent);
+}
+
+/* ---- 相册标题区 ---- */
+.album-heading { padding: 32px 0 20px; text-align: center; }
+.album-heading .name { font-size: 26px; font-weight: 600; }
+.album-heading .desc { margin-top: 6px; color: var(--text-dim); font-size: 14px; }
+
+/* ---- 瀑布流网格：用 CSS 多列实现，无需 JS 库 ---- */
+.album-grid {
+  columns: 3;
+  column-gap: 20px;
+  padding-bottom: 48px;
+}
+@media (max-width: 900px)  { .album-grid { columns: 2; } }
+@media (max-width: 560px)  { .album-grid { columns: 1; } }
+
+/* ---- 照片卡片 ---- */
+.album-card {
+  break-inside: avoid;          /* 关键：避免卡片被列截断 */
+  margin-bottom: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+}
+.album-card__media { position: relative; }
+.album-card__media img {
+  width: 100%;
+  height: auto;
+}
+.album-card__title {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* hover 时浮出 memo 预览（半透明遮罩） */
+.album-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(62, 58, 52, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.album-card:hover .album-card__overlay { opacity: 1; }
+.album-card__memo {
+  color: #F3EDE3;
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* 空相册提示 */
+.empty {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 60px 0;
+  font-size: 15px;
+}

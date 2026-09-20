@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>时光相册 · 我的记忆</title>
+  <!-- Tailwind CSS（CDN，供布局工具类使用） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { cream: '#F7F3EC', ink: '#3E3A34', oat: '#B89B7A' } } } };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/home.css" />
+</head>
+<body>
+
+  <!-- ===== 顶部 Hero ===== -->
+  <header class="hero">
+    <div class="container hero__inner">
+      <h1 class="hero__title">时光相册</h1>
+      <p class="hero__subtitle">把走过的路、遇见的人、吃过的饭，都轻轻收进这里。</p>
+    </div>
+  </header>
+
+  <!-- ===== 相册分类入口 ===== -->
+  <main class="container">
+    <section class="section">
+      <h2 class="section__title">相册</h2>
+      <div id="home-categories" class="cat-grid"></div>
+    </section>
+
+    <!-- 地图入口 -->
+    <section class="section">
+      <a href="map.html" class="map-entry hover-lift">
+        <div class="map-entry__emoji">🗺️</div>
+        <div class="map-entry__text">
+          <div class="map-entry__title">旅行地图</div>
+          <div class="map-entry__desc">在世界地图上，看看我走过的每一个地方</div>
+        </div>
+        <div class="map-entry__arrow">→</div>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>时光相册 · 安静地纪念每一个瞬间</p>
+  </footer>
+
+  <script src="data/photos.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+</html>

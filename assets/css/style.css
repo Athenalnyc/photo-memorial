@@ -1,0 +1,174 @@
+/* ==========================================================================
+   个人图片纪念网站 · 全局样式
+   配色方案：A. 暖米治愈（米白底 / 暖灰字 / 燕麦棕强调）
+   ========================================================================== */
+
+/* ---- 主题色变量 ---- */
+:root {
+  --bg:        #F7F3EC;   /* 主背景：暖米白 */
+  --card:      #FFFFFF;   /* 卡片背景 */
+  --text:      #3E3A34;   /* 主文字：暖灰 */
+  --text-dim:  #9B9B93;   /* 次要文字：中性灰 */
+  --accent:    #B89B7A;   /* 强调色：燕麦棕 */
+  --accent-soft: #E8DFD2; /* 强调色浅底 */
+  --line:      #ECE6DC;   /* 分隔线 */
+  --radius:    14px;      /* 圆角 */
+  --shadow:    0 4px 18px rgba(62, 58, 52, 0.08);
+  --font:      -apple-system, "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+/* ---- Reset ---- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+/* ---- 通用容器 ---- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---- 图片淡入加载效果 ---- */
+.fade-in-img {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-img.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- 顶部导航栏（相册页 / 地图页共用） ---- */
+.topbar {
+  background: rgba(247, 243, 236, 0.9);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.topbar__brand {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.topbar__back {
+  font-size: 14px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.topbar__back:hover { color: var(--accent); }
+
+/* ---- 页脚 ---- */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* ---- 简单 hover 动画 ---- */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+/* ==========================================================================
+   以下为灯箱（Lightbox）样式 —— 相册页 / 地图页共用
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 27, 24, 0.88);
+  padding: 24px;
+}
+.lightbox.active { display: flex; }
+
+.lightbox__panel {
+  max-width: min(920px, 92vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  animation: lbIn 0.25s ease;
+}
+@keyframes lbIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+/* memo 文字放在图片下方 */
+.lightbox__caption {
+  margin-top: 16px;
+  color: #F3EDE3;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lightbox__caption .title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.lightbox__caption .memo { color: #C9C2B8; }
+
+/* 关闭按钮 */
+.lightbox__close {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #F3EDE3;
+  font-size: 24px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lightbox__close:hover { background: rgba(255, 255, 255, 0.24); }

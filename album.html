@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>相册 · 时光相册</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { cream: '#F7F3EC', ink: '#3E3A34', oat: '#B89B7A' } } } };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/album.css" />
+</head>
+<body>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="topbar__brand">时光相册</a>
+      <nav id="album-tabs" class="tabs"></nav>
+    </div>
+  </header>
+
+  <!-- ===== 相册标题 ===== -->
+  <section class="container">
+    <div id="album-heading" class="album-heading">
+      <h1 class="name"></h1>
+      <p class="desc"></p>
+    </div>
+
+    <!-- 瀑布流照片网格 -->
+    <div id="album-grid" class="album-grid"></div>
+  </section>
+
+  <footer class="footer">
+    <p>时光相册 · 安静地纪念每一个瞬间</p>
+  </footer>
+
+  <script src="data/photos.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/album.js"></script>
+</body>
+</html>

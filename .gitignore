@@ -1,0 +1,4 @@
+# 系统文件，不纳入版本管理
+.DS_Store
+Thumbs.db
+desktop.ini

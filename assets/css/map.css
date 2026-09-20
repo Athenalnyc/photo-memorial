@@ -1,0 +1,52 @@
+/* ==========================================================================
+   map.css —— 地图页样式
+   ========================================================================== */
+
+.map-wrap {
+  position: relative;
+  height: calc(100vh - 64px); /* 顶部导航预留 64px */
+}
+.map { width: 100%; height: 100%; }
+
+/* 地图提示条 */
+.map-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  z-index: 500;
+  pointer-events: none;
+}
+
+/* 相机 marker 图标 */
+.camera-marker { background: transparent; border: none; }
+
+/* 地图 popup 内容 */
+.map-popup { text-align: left; }
+.map-popup img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px 6px 0 0;
+}
+.map-popup__body { padding: 10px 12px; }
+.map-popup__title { font-size: 15px; font-weight: 600; color: var(--text); }
+.map-popup__place { font-size: 13px; color: var(--accent); margin: 2px 0 6px; }
+.map-popup__memo {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 覆盖 Leaflet 默认 popup 圆角，统一风格 */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.leaflet-popup-content { margin: 0; width: 240px !important; }
