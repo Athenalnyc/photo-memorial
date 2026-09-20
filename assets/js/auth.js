@@ -23,8 +23,14 @@ const CATEGORIES = [
 
 /** 获取当前登录用户，未登录返回 null */
 async function currentUser() {
-  const { data } = await supabase.auth.getUser();
-  return data.user || null;
+  try {
+    // 用 getSession 读本地缓存，不发网络请求，未登录也不会抛错/卡住
+    const { data } = await supabase.auth.getSession();
+    return (data && data.session && data.session.user) || null;
+  } catch (e) {
+    console.error('读取登录状态失败：', e);
+    return null;
+  }
 }
 
 /** 要求已登录，否则跳转登录页。返回 user 或 null */
