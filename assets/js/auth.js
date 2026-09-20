@@ -3,8 +3,11 @@
    负责：初始化 Supabase、登录/注册/退出、会话检查、读取/写入照片数据。
    ========================================================================== */
 
-// 初始化 Supabase 客户端（本地文件已内置，不依赖外部 CDN）
-const supabase = (window.supabase && window.supabase.createClient)
+// 初始化 Supabase 客户端（本地文件已内置，不依赖外部 CDN）。
+// 注意：supabase.js 已经用 var 声明了全局 supabase（模块命名空间），
+// 这里不能再 const 声明同名变量（会报 "Identifier 'supabase' has already been declared"），
+// 直接把全局 supabase 重新赋值为已创建的客户端实例即可。
+window.supabase = (window.supabase && window.supabase.createClient)
   ? window.supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey)
   : null;
 
