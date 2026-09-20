@@ -4,10 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>登录 · 时光相册</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { colors: { cream: '#F7F3EC', ink: '#3E3A34', oat: '#B89B7A' } } } };
-  </script>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/login.css" />
 </head>
@@ -40,7 +36,7 @@
   </main>
 
   <!-- Supabase SDK + 配置 + 认证 -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="lib/supabase/supabase.js"></script>
   <script src="assets/js/supabase-config.js"></script>
   <script src="data/photos.js"></script>
   <script src="assets/js/auth.js"></script>

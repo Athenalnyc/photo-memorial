@@ -4,13 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>旅行地图 · 时光相册</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { colors: { cream: '#F7F3EC', ink: '#3E3A34', oat: '#B89B7A' } } } };
-  </script>
-
-  <!-- Leaflet 地图（本地 lib，若未本地化请改用 CDN） -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/map.css" />
 </head>
@@ -34,8 +28,8 @@
     <div class="map-hint">点击 📷 图标，查看照片与文字</div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="lib/leaflet/leaflet.js"></script>
+  <script src="lib/supabase/supabase.js"></script>
   <script src="assets/js/supabase-config.js"></script>
   <script src="data/photos.js"></script>
   <script src="assets/js/auth.js"></script>
