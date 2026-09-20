@@ -56,6 +56,33 @@
 }
 .map-popup__delete:hover { background: #C24E3D; }
 
+/* 同一地点多张照片的轮播 */
+.carousel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+}
+.carousel__btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.carousel__btn:hover { background: var(--accent); color: #fff; }
+.carousel__count {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
 /* 覆盖 Leaflet 默认 popup 圆角，统一风格 */
 .leaflet-popup-content-wrapper {
   border-radius: 10px;
