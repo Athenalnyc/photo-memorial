@@ -9,10 +9,25 @@
  * 此时需通过本地静态服务器访问（见 README.md「如何启动」）。
  * 此处做了降级处理：加载失败时给出清晰提示。
  */
+/** 从 localStorage 读取「添加照片」页上传的自定义照片 */
+function loadCustomPhotos() {
+  try {
+    const raw = localStorage.getItem('photo-memorial-custom');
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
 async function loadPhotos() {
   // 优先读取内嵌数据（photos.js 里的 window.PHOTOS_DATA），双击打开也可用
   if (window.PHOTOS_DATA) {
-    return window.PHOTOS_DATA;
+    // 合并浏览器里「添加照片」页上传的照片
+    const base = window.PHOTOS_DATA;
+    return {
+      categories: base.categories || [],
+      photos: (base.photos || []).concat(loadCustomPhotos())
+    };
   }
   // 降级：服务器环境下尝试 fetch
   try {

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>添加照片 · 时光相册</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { cream: '#F7F3EC', ink: '#3E3A34', oat: '#B89B7A' } } } };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/add.css" />
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="topbar__brand">时光相册</a>
+      <a href="index.html" class="topbar__back">← 返回首页</a>
+    </div>
+  </header>
+
+  <!-- 表单区 -->
+  <main class="container add-main">
+    <h1 class="add-title">添加一张照片</h1>
+    <p class="add-sub">上传图片、选好分类、写下此刻</p>
+
+    <form id="add-form" class="add-form">
+      <!-- 图片上传 -->
+      <div class="field">
+        <label class="label">照片 <span class="req">*</span></label>
+        <div id="drop-zone" class="drop-zone">
+          <img id="preview" class="preview" alt="预览" />
+          <div id="drop-hint" class="drop-hint">
+            <div class="drop-hint__icon">📷</div>
+            <p>点击选择图片，或拖拽到此处</p>
+          </div>
+          <input type="file" id="file-input" accept="image/*" hidden />
+        </div>
+      </div>
+
+      <!-- 分类 -->
+      <div class="field">
+        <label class="label" for="category">分类 <span class="req">*</span></label>
+        <select id="category" class="input"></select>
+      </div>
+
+      <!-- 标题 -->
+      <div class="field">
+        <label class="label" for="title">标题</label>
+        <input type="text" id="title" class="input" placeholder="给照片起个名字（可选）" />
+      </div>
+
+      <!-- 地点（旅行照片用） -->
+      <div class="field">
+        <label class="label" for="place">地点名（旅行照片填）</label>
+        <input type="text" id="place" class="input" placeholder="例如：法国 · 马赛" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="label" for="lat">纬度 lat</label>
+          <input type="number" step="any" id="lat" class="input" placeholder="43.2965" />
+        </div>
+        <div class="field">
+          <label class="label" for="lng">经度 lng</label>
+          <input type="number" step="any" id="lng" class="input" placeholder="5.3698" />
+        </div>
+      </div>
+
+      <!-- memo -->
+      <div class="field">
+        <label class="label" for="memo">文字记录 memo</label>
+        <textarea id="memo" class="input textarea" rows="3" placeholder="写一段当时的感受…"></textarea>
+      </div>
+
+      <!-- 日期 -->
+      <div class="field">
+        <label class="label" for="date">拍摄日期</label>
+        <input type="date" id="date" class="input" />
+      </div>
+
+      <button type="submit" id="submit-btn" class="submit-btn">保存这张照片</button>
+      <p id="form-msg" class="form-msg"></p>
+    </form>
+  </main>
+
+  <script src="data/photos.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/add.js"></script>
+</body>
+</html>

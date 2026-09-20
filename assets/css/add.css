@@ -1,0 +1,94 @@
+/* ==========================================================================
+   add.css —— 添加照片页样式
+   ========================================================================== */
+
+.add-main { max-width: 640px; padding-top: 40px; padding-bottom: 60px; }
+.add-title { font-size: 26px; font-weight: 600; text-align: center; }
+.add-sub { text-align: center; color: var(--text-dim); font-size: 14px; margin-top: 6px; }
+
+.add-form {
+  margin-top: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- 字段 ---- */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-row { display: flex; gap: 14px; }
+.field-row .field { flex: 1; }
+.label { font-size: 14px; color: var(--text); font-weight: 500; }
+.req { color: #C77; }
+
+.input {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #FCFAF6;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(184, 155, 122, 0.15);
+}
+.textarea { resize: vertical; }
+
+/* ---- 图片上传区 ---- */
+.drop-zone {
+  position: relative;
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.drop-zone:hover { border-color: var(--accent); }
+.drop-zone.dragover { border-color: var(--accent); background: var(--accent-soft); }
+
+.drop-hint { text-align: center; color: var(--text-dim); }
+.drop-hint__icon { font-size: 40px; }
+.drop-hint p { font-size: 14px; margin-top: 6px; }
+
+.preview {
+  display: none;
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+}
+.preview.show { display: block; }
+
+/* ---- 提交按钮 ---- */
+.submit-btn {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+}
+.submit-btn:hover { background: #A68A6B; }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-msg {
+  text-align: center;
+  font-size: 14px;
+  min-height: 20px;
+}
+.form-msg.ok { color: #6B9B6B; }
+.form-msg.err { color: #C77; }

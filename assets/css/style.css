@@ -83,6 +83,16 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .topbar__back:hover { color: var(--accent); }
+.topbar__add {
+  font-size: 14px;
+  color: #fff;
+  background: var(--accent);
+  padding: 6px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.topbar__add:hover { background: #A68A6B; }
 
 /* ---- 页脚 ---- */
 .footer {

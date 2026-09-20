@@ -19,6 +19,18 @@
   font-size: 16px;
   letter-spacing: 1px;
 }
+.add-btn {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 11px 30px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 2px;
+  border-radius: 999px;
+  transition: background 0.2s, transform 0.2s;
+}
+.add-btn:hover { background: #A68A6B; transform: translateY(-2px); }
 
 /* ---- 通用 section ---- */
 .section { padding: 24px 0; }
